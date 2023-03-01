@@ -17,7 +17,7 @@ namespace CollectWordsUITestV7
         {
             //_driver = new ChromeDriver(DriverDirectory);
             // _driver = new FirefoxDriver(DriverDirectory); 
-             _driver = new EdgeDriver(DriverDirectory); 
+            _driver = new EdgeDriver(DriverDirectory);
         }
 
         [ClassCleanup]
@@ -91,7 +91,7 @@ namespace CollectWordsUITestV7
             IWebElement listElement = _driver.FindElement(By.Id("wordlist"));
             Assert.IsTrue(listElement.Text.Contains("anders"));
 
-            ReadOnlyCollection<IWebElement> listItems = _driver.FindElements(By.TagName("li"));
+            IList<IWebElement> listItems = _driver.FindElements(By.TagName("li"));
             Assert.AreEqual(2, listItems.Count);
             Assert.AreEqual("anders", listItems[0].Text);
             Assert.AreEqual("bor", listItems[1].Text);
@@ -99,7 +99,7 @@ namespace CollectWordsUITestV7
             IWebElement clearButton = _driver.FindElement(By.Id("clearButton"));
             clearButton.Click();
             string message = _driver.FindElement(By.Id("noWordsMessage")).Text;
-            Assert.AreEqual("No words", message);  
+            Assert.AreEqual("No words", message);
         }
     }
 }
